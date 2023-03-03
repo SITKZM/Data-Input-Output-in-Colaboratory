@@ -28,22 +28,22 @@ def data_input(sheet_name, row_len, col_len):
 
 # sheet_name: the name of the Google Spreadsheet with the data you want to output in the form of (len(data))x(len(data[0]))
 def file_output(data, sheet_name):
-  creds, _ = default()
+    creds, _ = default()
 
-  gc = gspread.authorize(creds)
+    gc = gspread.authorize(creds)
 
-  row_len = len(data)
-  col_len = len(data[0])
+    row_len = len(data)
+    col_len = len(data[0])
 
-  sh = gc.create(sheet_name)
-  worksheet = gc.open(sheet_name).sheet1
+    sh = gc.create(sheet_name)
+    worksheet = gc.open(sheet_name).sheet1
 
-  worksheet.add_rows(row_len)
+    worksheet.add_rows(row_len)
 
-  cell_list = worksheet.range(1, 1, row_len, col_len)
-  col_list = [flatten for inner in coordinates for flatten in inner]
+    cell_list = worksheet.range(1, 1, row_len, col_len)
+    col_list = [flatten for inner in coordinates for flatten in inner]
 
-  for cell, col in zip(cell_list, col_list):
+    for cell, col in zip(cell_list, col_list):
       cell.value = col
 
-  worksheet.update_cells(cell_list)
+    worksheet.update_cells(cell_list)
