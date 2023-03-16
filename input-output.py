@@ -41,7 +41,7 @@ def file_output(data, sheet_name):
     worksheet.add_rows(row_len)
 
     cell_list = worksheet.range(1, 1, row_len, col_len)
-    col_list = [flatten for inner in coordinates for flatten in inner]
+    col_list = [flatten for inner in data for flatten in inner]
 
     for cell, col in zip(cell_list, col_list):
       cell.value = col
