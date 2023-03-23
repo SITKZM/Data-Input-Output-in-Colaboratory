@@ -18,11 +18,13 @@ def data_input(sheet_name, row_len, col_len):
     cells = worksheet.range(1, 1, row_len, col_len)
 
     table_data = []
-
+    cols = []
+        
     for i, cell in enumerate(cells):
-        if cell.value == "":
-            continue
-        table_data.append(float(cell.value))
+        cols.append(float(cell.value))
+        if (i + 1) % col_len == 0:
+            table_data.append(cols)
+            cols = []
 
     return table_data
 
