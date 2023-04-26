@@ -1,5 +1,3 @@
-!pip install --upgrade -q gspread
-
 from google.colab import auth
 auth.authenticate_user()
 import gspread
